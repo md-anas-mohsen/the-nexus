@@ -2,6 +2,10 @@ import { useRef, useState } from "react";
 import "./contact.scss";
 import { motion, useInView } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import {
+  APP_INFO_CONTACT_EMAIL,
+  APP_INFO_CONTACT_PHONE,
+} from "../../constants";
 
 const variants = {
   initial: {
@@ -38,7 +42,7 @@ const Contact = () => {
       )
       .then(
         (result) => {
-          setSuccess(true)
+          setSuccess(true);
         },
         (error) => {
           setError(true);
@@ -58,7 +62,7 @@ const Contact = () => {
         <motion.h1 variants={variants}>Let’s work together</motion.h1>
         <motion.div className="item" variants={variants}>
           <h2>Mail</h2>
-          <span>hello@react.dev</span>
+          <span>{APP_INFO_CONTACT_EMAIL}</span>
         </motion.div>
         <motion.div className="item" variants={variants}>
           <h2>Address</h2>
@@ -66,7 +70,7 @@ const Contact = () => {
         </motion.div>
         <motion.div className="item" variants={variants}>
           <h2>Phone</h2>
-          <span>+1 234 5678</span>
+          <span>{APP_INFO_CONTACT_PHONE}</span>
         </motion.div>
       </motion.div>
       <div className="formContainer">
@@ -106,9 +110,9 @@ const Contact = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 4, duration: 1 }}
         >
-          <input type="text" required placeholder="Name" name="name"/>
-          <input type="email" required placeholder="Email" name="email"/>
-          <textarea rows={8} placeholder="Message" name="message"/>
+          <input type="text" required placeholder="Name" name="name" />
+          <input type="email" required placeholder="Email" name="email" />
+          <textarea rows={8} placeholder="Message" name="message" />
           <button>Submit</button>
           {error && "Error"}
           {success && "Success"}

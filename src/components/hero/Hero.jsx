@@ -1,5 +1,13 @@
+import {
+  APP_INFO_DEV_NAME,
+  APP_INFO_OCCUPATION,
+  APP_INFO_OCCUPATION_ROLE_1,
+  APP_INFO_OCCUPATION_ROLE_2,
+} from "../../constants";
+import RocketAstronautAnimation from "./character/rocketdude";
 import "./hero.scss";
 import { motion } from "framer-motion";
+import RocketComponent from "./rocket/Rocket";
 
 const textVariants = {
   initial: {
@@ -28,11 +36,32 @@ const sliderVariants = {
     x: 0,
   },
   animate: {
-    x: "-220%",
+    x: "-2000%",
     transition: {
       repeat: Infinity,
-      repeatType:"mirror",
-      duration: 20,
+      repeatType: "mirror",
+      duration: 70,
+    },
+  },
+};
+
+// Add this new variant for scroll button
+const scrollButtonVariants = {
+  initial: { y: 200, opacity: 0 }, // Start from below
+  animate: {
+    y: 0, // Slide to final position
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+    },
+  },
+  hover: {
+    y: [0, 10, 0], // Hover effect: move down and up
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: "easeInOut",
     },
   },
 };
@@ -47,10 +76,16 @@ const Hero = () => {
           initial="initial"
           animate="animate"
         >
-          <motion.h2 variants={textVariants}>HARVEY TYLER</motion.h2>
-          <motion.h1 variants={textVariants}>
-            Web developer and UI designer
-          </motion.h1>
+          <motion.h2 variants={textVariants}>
+            {APP_INFO_DEV_NAME.toUpperCase()}
+          </motion.h2>
+          <motion.h1 variants={textVariants}>{APP_INFO_OCCUPATION}</motion.h1>
+          <motion.h2 variants={textVariants}>
+            {APP_INFO_OCCUPATION_ROLE_1}
+          </motion.h2>
+          <motion.h2 variants={textVariants}>
+            {APP_INFO_OCCUPATION_ROLE_2}
+          </motion.h2>
           <motion.div variants={textVariants} className="buttons">
             <motion.button variants={textVariants}>
               See the Latest Works
@@ -58,10 +93,13 @@ const Hero = () => {
             <motion.button variants={textVariants}>Contact Me</motion.button>
           </motion.div>
           <motion.img
-            variants={textVariants}
-            animate="scrollButton"
+            variants={scrollButtonVariants}
+            initial="initial"
+            animate="animate"
+            whileInView="hover" // Start hover after slide-in
+            viewport={{ once: true }} // Only trigger once
             src="/scroll.png"
-            alt=""
+            alt="Scroll down to explore"
           />
         </motion.div>
       </div>
@@ -70,12 +108,26 @@ const Hero = () => {
         variants={sliderVariants}
         initial="initial"
         animate="animate"
+        style={{
+          userSelect: "none",
+          WebkitUserSelect: "none",
+          MozUserSelect: "none",
+          msUserSelect: "none",
+          pointerEvents: "none", // Optional: removes mouse interactions
+        }}
       >
-        Writer Content Creator Influencer
+        MVP Builder - React • Node • TypeScript • Docker - Ideas → Product -
+        Code. Deploy. Iterate.
       </motion.div>
-      <div className="imageContainer">
-        <img src="/hero.png" alt="" />
-      </div>
+      {/* <div className="imageContainer">
+        <img src="/rockethero (1).png" alt="" />
+      </div> */}
+
+      <RocketComponent
+        src="/rocket.png"
+        alt="Rocket icon hovering"
+        className="imageContainer"
+      />
     </div>
   );
 };

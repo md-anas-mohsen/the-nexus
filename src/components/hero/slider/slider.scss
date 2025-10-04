@@ -1,0 +1,32 @@
+.slidingTextContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100px; // bigger so text fits, avoids clipping
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  // DEBUG styles - remove later
+  border: 2px solid red;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.slide {
+  position: relative;
+  white-space: nowrap;
+  text-align: center;
+
+  font-size: 2.5rem; // much bigger font
+  font-weight: 700;
+  line-height: 1.3;
+  color: #111; // strong visible text
+
+  // Force GPU paint so you don’t need DevTools
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+  // DEBUG styles - remove later
+  background: rgba(0, 255, 0, 0.1);
+}

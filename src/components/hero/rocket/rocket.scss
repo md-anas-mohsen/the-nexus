@@ -1,0 +1,17 @@
+@keyframes cycleFlare {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(-280px);
+  }
+  50% {
+    transform: translateX(-560px);
+  }
+  75% {
+    transform: translateX(-840px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

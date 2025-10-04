@@ -1,0 +1,14 @@
+.hero-slider {
+  margin-top: 1rem; // spacing from buttons
+
+  &__slide {
+    font-weight: bold;
+    color: "#FFFF00";
+    position: absolute;
+    font-size: 30vh;
+    bottom: -80px;
+    white-space: nowrap;
+    color: #ffffff09;
+    width: 50%;
+  }
+}
