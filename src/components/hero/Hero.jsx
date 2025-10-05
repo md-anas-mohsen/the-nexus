@@ -146,7 +146,7 @@ const Hero = () => {
         }}
       >
         {Array.from({ length: 8 }).map((_, i) => {
-          const size = Math.random() * 120 + 180;
+          const size = Math.random() * 180 + 240;
           const left = Math.random() * 90 - 10;
           const top = Math.random() * 80 - 10;
           const delay = Math.random() * 4;
