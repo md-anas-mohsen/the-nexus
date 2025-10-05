@@ -1,8 +1,8 @@
 export const APP_INFO_DEV_NAME = "Anas Mohsen";
 
-export const APP_INFO_CONTACT_EMAIL = "-";
+export const APP_INFO_CONTACT_EMAIL = "anas.mohsen65@gmail.com";
 
-export const APP_INFO_CONTACT_PHONE = "-";
+export const APP_INFO_CONTACT_PHONE = "+92 335 5565649";
 
 export const APP_INFO_OCCUPATION = "Software Engineer II";
 
