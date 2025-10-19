@@ -1,7 +1,11 @@
+// StarFall.jsx
 import { motion } from "framer-motion";
 import "./starfall.scss";
 
-const StarFall = ({ numStars = 128 }) => {
+const StarFall = ({
+  numStars = 128,
+  twinklePeriod = 1.8, // seconds per full twinkle cycle (lower = faster)
+}) => {
   return (
     <motion.div
       className="stars-cluster"
@@ -10,14 +14,11 @@ const StarFall = ({ numStars = 128 }) => {
       transition={{ duration: 1 }}
     >
       {Array.from({ length: numStars }).map((_, i) => {
-        const size = Math.random() * 3 + 1;
+        const size = Math.random() * 5 + 2;
         const left = Math.random() * 100;
-        const opacity = Math.random() * 0.7 + 0.3;
-        const duration = Math.random() * 6 + 6; // 15–25s
-
-        // 🌟 Key: Negative delay = start partway through animation
-        const fullCycle = duration; // seconds
-        const randomDelay = -Math.random() * fullCycle; // e.g., -12.3s
+        const opacity = Math.random() * 0.8 + 0.1;
+        const duration = Math.random() * 8 + 6;
+        const randomDelay = -Math.random() * duration;
 
         return (
           <div
@@ -28,8 +29,10 @@ const StarFall = ({ numStars = 128 }) => {
               height: `${size}px`,
               left: `${left}%`,
               opacity,
-              animationDuration: `${duration}s`,
-              animationDelay: `${randomDelay}s`,
+              "--fall-duration": `${duration}s`,
+              "--delay": `${randomDelay}s`,
+              "--twinkle-duration": `${twinklePeriod}s`, // ✅ Controlled by prop
+              "--twinkle-delay": `-${Math.random() * twinklePeriod}s`,
             }}
           />
         );
