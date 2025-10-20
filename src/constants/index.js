@@ -1,5 +1,7 @@
 export const APP_INFO_DEV_NAME = "Anas Mohsen";
 
+export const APP_INFO_SITE_NAME = "The Nexus";
+
 export const APP_INFO_CONTACT_EMAIL = "anas.mohsen65@gmail.com";
 
 export const APP_INFO_CONTACT_PHONE = "-";

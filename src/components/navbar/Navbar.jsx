@@ -1,4 +1,4 @@
-import { APP_INFO_DEV_NAME } from "../../constants";
+import { APP_INFO_SITE_NAME } from "../../constants";
 import Sidebar from "../sidebar/Sidebar";
 import "./navbar.scss";
 import { motion } from "framer-motion";
@@ -14,7 +14,7 @@ const Navbar = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          {APP_INFO_DEV_NAME}
+          {APP_INFO_SITE_NAME}
         </motion.span>
         <div className="social">
           <a href="#">

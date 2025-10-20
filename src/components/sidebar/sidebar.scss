@@ -5,8 +5,8 @@
   align-items: center;
   justify-content: center;
   background-color: white;
-  color: black;
-  
+  color: white;
+
   .bg {
     z-index: 999;
     position: fixed;
@@ -14,7 +14,7 @@
     left: 0;
     bottom: 0;
     width: 400px;
-    background: white;
+    background: #0c0c1d;
 
     @include mobile {
       width: 200px;
