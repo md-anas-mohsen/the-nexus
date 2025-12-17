@@ -1,0 +1,66 @@
+.stars-cluster {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 3px 0.5px rgba(255, 255, 255, 0.6);
+    filter: blur(0.2px);
+
+    animation: starFall linear infinite, twinkle ease-in-out infinite;
+    animation-duration: var(--fall-duration), var(--twinkle-duration);
+    animation-delay: var(--delay), var(--twinkle-delay);
+  }
+
+  // Color variants (optional)
+  .star:nth-child(3n) {
+    background: hsl(220, 80%, 95%);
+  }
+  .star:nth-child(5n) {
+    background: hsl(300, 70%, 90%);
+  }
+  .star:nth-child(7n) {
+    background: hsl(45, 90%, 85%);
+  }
+
+  @keyframes starFall {
+    from {
+      transform: translateY(-100vh);
+    }
+    to {
+      transform: translateY(100vh);
+    }
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.1;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+.stars-cluster.static-stars {
+  height: 100%; // Full viewport height (no 200% needed)
+
+  .star {
+    // ✅ Disable falling animation — only twinkle
+    animation: twinkle ease-in-out infinite;
+    animation-duration: var(--twinkle-duration);
+    animation-delay: var(--twinkle-delay);
+
+    // Optional: subtle depth via size-based top offset (parallax-style)
+    // Not required — just a nice touch
+  }
+}

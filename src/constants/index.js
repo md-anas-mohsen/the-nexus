@@ -10,4 +10,4 @@ export const APP_INFO_OCCUPATION = "Software Engineer";
 
 export const APP_INFO_OCCUPATION_ROLE_1 = "AI Driven, Full Stack";
 
-export const APP_INFO_OCCUPATION_ROLE_2 = "Turn your dreams into reality";
+export const APP_INFO_OCCUPATION_ROLE_2 = "";

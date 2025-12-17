@@ -1,0 +1,87 @@
+.planets-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  .mainPlanet {
+    position: relative;
+    text-align: center;
+  }
+
+  .mainPlanet h2.title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    line-break: strict;
+  }
+
+  .planet {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    // Sprite styling
+    background-repeat: no-repeat;
+    border-radius: 50%;
+
+    // Hover effect
+    .planet-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover .planet-inner {
+      transform: scale(1.1);
+    }
+
+    h2 {
+      margin-top: 8px;
+      font-size: 1.4rem;
+      color: white;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  // Position sub-planets around main one
+  .sub-planet:nth-child(2) {
+    top: 6%;
+    left: 43%;
+  }
+  .sub-planet:nth-child(3) {
+    top: 16%;
+    right: 28%;
+  }
+  .sub-planet:nth-child(4) {
+    top: 16%;
+    left: 28%;
+  }
+  .sub-planet:nth-child(5) {
+    top: 38%;
+    left: 24%;
+  }
+  .sub-planet:nth-child(6) {
+    top: 60%;
+    left: 28%;
+  }
+  .sub-planet:nth-child(7) {
+    bottom: 36%;
+    right: 24%;
+  }
+  .sub-planet:nth-child(8) {
+    bottom: 3%;
+    left: 43%;
+  }
+  .sub-planet:nth-child(9) {
+    bottom: 16%;
+    right: 28%;
+  }
+}
