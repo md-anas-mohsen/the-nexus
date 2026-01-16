@@ -68,20 +68,28 @@
     top: 38%;
     left: 24%;
   }
+
+  //7:00
   .sub-planet:nth-child(6) {
     top: 60%;
     left: 28%;
   }
+
+  //3:00
   .sub-planet:nth-child(7) {
     bottom: 36%;
     right: 24%;
   }
+
+  //6:00
   .sub-planet:nth-child(8) {
     bottom: 3%;
     left: 43%;
   }
+
+  //5:00
   .sub-planet:nth-child(9) {
-    bottom: 16%;
+    top: 60%;
     right: 28%;
   }
 }

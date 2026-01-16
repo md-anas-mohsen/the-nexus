@@ -14,7 +14,15 @@ export const PLANET_SPRITE = {
     pinkAmberCyanMagenta: { x: 284, y: 12 }, // top-2nd
     brownCyan: { x: 256, y: 256 }, // bottom-2nd
     yellowCyan: { x: 512, y: 256 }, // bottom-3rd
-    limeGreenCyan: { x: 512, y: 0 }, // top-3rd
+    limeGreenCyan: { x: 492, y: 12 }, // top-3rd
+    brown: {
+      x: 284,
+      y: 240,
+    },
+    yellow: {
+      x: 492,
+      y: 240,
+    },
   },
 };
 
@@ -68,22 +76,18 @@ const Planets = () => {
       <MainPlanet />
 
       {/* ✅ Add any planet as a subcomponent */}
-      <Planet
-        type="ringedMagentaAmber"
-        title="Frontend"
-        className="sub-planet"
-      />
-      <Planet type="pinkCyan" title="Backend" className="sub-planet" />
+      <Planet type="ringedMagentaAmber" title="React" className="sub-planet" />
+      <Planet type="pinkCyan" title="MySQL" className="sub-planet" />
       <Planet type="limeGreen" title="Node JS" className="sub-planet" />
       <Planet type="silverRed" title="Laravel" className="sub-planet" />
       <Planet
         type="pinkAmberCyanMagenta"
-        title="Design"
+        title="CI/CD"
         className="sub-planet"
       />
-      <Planet type="brown" title="AI/ML" className="sub-planet" />
-      <Planet type="yellow" title="Testing" className="sub-planet" />
-      <Planet type="cyan" title="Security" className="sub-planet" />
+      <Planet type="brown" title="Postgres" className="sub-planet" />
+      <Planet type="yellow" title="Integrations" className="sub-planet" />
+      <Planet type="limeGreenCyan" title="Docker" className="sub-planet" />
     </div>
   );
 };
