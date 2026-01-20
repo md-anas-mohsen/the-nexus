@@ -1,6 +1,6 @@
 import React from "react";
 import Nebula from "./nebula/Nebula";
-import StarFall from "./starfall/Starfall";
+import StarFall from "./starfall/StarFall";
 import AsteroidField from "./asteroids/AsteroidField";
 
 const Atmoshphere = () => {
