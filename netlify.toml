@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = "dist"   # or "build" for CRA
+  functions = "netlify/functions"  # if using serverless functions
+
+[build.environment]
+  NODE_VERSION = "20"
