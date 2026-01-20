@@ -11,6 +11,8 @@
     text-align: center;
     color: orange;
     font-size: 36px;
+    background-color: #0c0c1d;
+    z-index: 999;
 
     @include mobile {
       padding-top: calc(100vh - 100px);
@@ -45,30 +47,88 @@
       }
 
       .imageContainer {
-        flex: 1;
+        flex: 0 1 45%; /* Flex grow: 0, shrink: 1, basis: 45% */
         height: 50%;
+        min-width: 0; /* Allows flex item to shrink below content size */
 
         @include mobile {
           width: 100%;
           max-height: 300px;
         }
 
-        img {
+        .carousel-container {
           width: 100%;
           height: 100%;
-          object-fit: cover;
 
-          @include mobile {
-            object-fit: contain;
+          .carousel-item {
+            width: 100%;
+            height: 100%;
+
+            .carousel-image {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+
+              @include mobile {
+                object-fit: contain;
+              }
+            }
+          }
+
+          .react-multiple-carousel__arrow {
+            background-color: rgba(
+              255,
+              165,
+              0,
+              0.7
+            ); /* Orange with transparency */
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+
+            &:hover {
+              background-color: rgba(
+                255,
+                165,
+                0,
+                0.9
+              ); /* Darker orange on hover */
+            }
+          }
+
+          .react-multiple-carousel__arrow--left {
+            left: 10px !important;
+          }
+
+          .react-multiple-carousel__arrow--right {
+            right: 10px !important;
+          }
+
+          .react-multiple-carousel__dots {
+            button {
+              background-color: #fff;
+              border: 1px solid #ccc;
+
+              &.react-multiple-carousel__dot--active {
+                background-color: orange;
+              }
+            }
           }
         }
       }
 
       .textContainer {
-        flex: 1;
+        flex: 0 1 50%; /* Flex grow: 0, shrink: 1, basis: 50% */
         display: flex;
         flex-direction: column;
         gap: 30px;
+        min-width: 0; /* Allows flex item to shrink below content size */
 
         @include mobile {
           transform: none !important;
@@ -79,6 +139,8 @@
 
         h2 {
           font-size: 72px;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
 
           @include mobile {
             font-size: 36px;
@@ -88,6 +150,8 @@
         p {
           color: gray;
           font-size: 20px;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
 
           @include mobile {
             font-size: 16px;
@@ -101,6 +165,202 @@
           padding: 10px;
           width: 200px;
           cursor: pointer;
+
+          &:hover {
+            background-color: darken(orange, 10%);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background-color: white;
+  width: 90%;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease-out;
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+
+    h2 {
+      margin: 0;
+      font-size: 28px;
+      color: #333;
+    }
+
+    .close-button {
+      background: none;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: #999;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        color: #333;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 20px;
+
+    .modal-carousel {
+      margin-bottom: 20px;
+
+      .modal-carousel-container {
+        .carousel-item {
+          .modal-carousel-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+          }
+        }
+
+        .react-multiple-carousel__arrow {
+          background-color: rgba(255, 165, 0, 0.7);
+          border: none;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 10;
+
+          &:hover {
+            background-color: rgba(255, 165, 0, 0.9);
+          }
+        }
+
+        .react-multiple-carousel__arrow--left {
+          left: 10px !important;
+        }
+
+        .react-multiple-carousel__arrow--right {
+          right: 10px !important;
+        }
+
+        .react-multiple-carousel__dots {
+          button {
+            background-color: #fff;
+            border: 1px solid #ccc;
+
+            &.react-multiple-carousel__dot--active {
+              background-color: orange;
+            }
+          }
+        }
+      }
+    }
+
+    .modal-description {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: #333;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      ul,
+      ol {
+        padding-left: 20px;
+        margin-bottom: 15px;
+
+        li {
+          margin-bottom: 5px;
+          color: #666;
+        }
+      }
+
+      strong {
+        font-weight: bold;
+        color: #333;
+      }
+
+      br {
+        display: block;
+        content: "";
+        margin: 10px 0;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    max-height: 95vh;
+
+    .modal-body {
+      .modal-carousel {
+        .modal-carousel-container {
+          .carousel-item {
+            .modal-carousel-image {
+              height: 250px;
+            }
+          }
         }
       }
     }

@@ -1,17 +1,16 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "./portfolio.scss";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import ReactMarkdown from "react-markdown";
 
 const items = [
   {
     id: 1,
     title: "Asaan Retail",
     img: "/asaanretail-orders.png",
-    carouselImages: [
-      "/asaanretail-orders.png",
-      "https://images.pexels.com/photos/6894528/pexels-photo-6894528.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-      "https://images.pexels.com/photos/18540208/pexels-photo-18540208/free-photo-of-wood-landscape-water-hill.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    ],
+    carouselImages: ["/asaanretail-orders.png"],
     desc: "One window Inventory, Orders, Shipments, and Accounting software for Multi-Channel Commerce.",
     tools: "php, Laravel, MySQL, jQuery, Shopify, Woocommerce, Ubuntu, Bash",
     link: "https://asaanretail.io/",
@@ -49,11 +48,7 @@ Asaan Retail is a comprehensive solution designed for multi-channel commerce bus
     id: 2,
     title: "SuiteSpot: The Networking App",
     img: "/lsuite-suitespot-card.png",
-    carouselImages: [
-      "/lsuite-suitespot-card.png",
-      "https://images.pexels.com/photos/6894528/pexels-photo-6894528.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-      "https://images.pexels.com/photos/18540208/pexels-photo-18540208/free-photo-of-wood-landscape-water-hill.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    ],
+    carouselImages: ["/lsuite-suitespot-card.png"],
     desc: "Swipe right or left to connect with or discard anonymous profiles belonging to industry professionals. Schedule a coffee chat with like minded professionals.",
     tools: "Node.js, Express, React, MUI, tailwindcss, Vite, Airtable, Docker",
     link: "https://drive.google.com/file/d/150q7Qd3BT1ao7_cu1Ae8ux2z1x9B8ve6/view?usp=drive_link",
@@ -89,11 +84,13 @@ SuiteSpot revolutionizes professional networking by allowing users to connect wi
   {
     id: 3,
     title: "Qpon App",
-    img: "https://images.pexels.com/photos/6894528/pexels-photo-6894528.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    img: "qpon1.webp",
     carouselImages: [
-      "https://images.pexels.com/photos/6894528/pexels-photo-6894528.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-      "https://images.pexels.com/photos/18540208/pexels-photo-18540208/free-photo-of-wood-landscape-water-hill.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "/asaanretail-orders.png",
+      "qpon1.webp",
+      "qpon2.webp",
+      "qpon3.webp",
+      "qpon4.webp",
+      "qpon5.webp",
     ],
     desc: "Save hundreds of dollars, on everything you are looking for by availing deals and discounts every month. Sign up as a customer or as a business. Subscribe to monthly plans from the app.",
     tools: "Node.js, NestJS, Postgres, Redis, Nginx, AWS",
@@ -252,6 +249,7 @@ This system modernizes legacy healthcare management by providing a comprehensive
 
 const Single = ({ item }) => {
   const ref = useRef();
+  const [showModal, setShowModal] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -259,24 +257,105 @@ const Single = ({ item }) => {
 
   const y = useTransform(scrollYProgress, [0, 1], [-300, 300]);
 
+  // Carousel responsive settings
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
   return (
-    <section>
-      <div className="container">
-        <div className="wrapper">
-          <div className="imageContainer" ref={ref}>
-            <img src={item.img} alt="" />
-          </div>
-          <motion.div className="textContainer" style={{ y }}>
-            <h2>{item.title}</h2>
-            <p>{item.desc}</p>
-            <div style={{ display: "flex", gap: "10px" }}>
-              <button>Read More</button>
-              <button>See Demo</button>
+    <>
+      <section>
+        <div className="container">
+          <div className="wrapper">
+            <div className="imageContainer" ref={ref}>
+              <Carousel
+                responsive={responsive}
+                autoPlay={false}
+                showDots={true}
+                arrows={true}
+                className="carousel-container"
+              >
+                {item.carouselImages.map((image, index) => (
+                  <div key={index} className="carousel-item">
+                    <img
+                      src={image}
+                      alt={`${item.title} ${index + 1}`}
+                      className="carousel-image"
+                    />
+                  </div>
+                ))}
+              </Carousel>
             </div>
-          </motion.div>
+            <motion.div className="textContainer" style={{ y }}>
+              <h2>{item.title}</h2>
+              <p>{item.desc}</p>
+              <div style={{ display: "flex", gap: "10px" }}>
+                <button onClick={() => setShowModal(true)}>Read More</button>
+                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                  <button>See Demo</button>
+                </a>
+              </div>
+            </motion.div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Modal for detailed description */}
+      {showModal && (
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>{item.title}</h2>
+              <button
+                className="close-button"
+                onClick={() => setShowModal(false)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="modal-body">
+              <div className="modal-carousel">
+                <Carousel
+                  responsive={responsive}
+                  autoPlay={false}
+                  showDots={true}
+                  arrows={true}
+                  className="modal-carousel-container"
+                >
+                  {item.carouselImages.map((image, index) => (
+                    <div key={index} className="carousel-item">
+                      <img
+                        src={image}
+                        alt={`${item.title} ${index + 1}`}
+                        className="modal-carousel-image"
+                      />
+                    </div>
+                  ))}
+                </Carousel>
+              </div>
+              <div className="modal-description">
+                <ReactMarkdown>{item.detailedDesc}</ReactMarkdown>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
