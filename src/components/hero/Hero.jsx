@@ -103,7 +103,7 @@ const Hero = () => {
           />
         </motion.div>
       </div>
-      <motion.div
+      {/* <motion.div
         className="slidingTextContainer"
         variants={sliderVariants}
         initial="initial"
@@ -118,7 +118,7 @@ const Hero = () => {
       >
         MVP Builder - React • Node • TypeScript • Docker - Ideas → Product -
         Code. Deploy. Iterate.
-      </motion.div>
+      </motion.div> */}
       {/* <div className="imageContainer">
         <img src="/rockethero (1).png" alt="" />
       </div> */}
