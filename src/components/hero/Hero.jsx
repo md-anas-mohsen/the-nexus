@@ -101,6 +101,17 @@ const Hero = () => {
             src="/scroll.png"
             alt="Scroll down to explore"
           />
+          {/* <motion.div
+            variants={scrollButtonVariants}
+            initial="initial"
+            animate="animate"
+            whileInView="hover" // Start hover after slide-in
+            viewport={{ once: true }} // Only trigger once
+            src="/scroll.png"
+            alt="Scroll down to explore"
+          >
+            <span style={{ fontSize: 48 }}>⬇</span>
+          </motion.div> */}
         </motion.div>
       </div>
       {/* <motion.div

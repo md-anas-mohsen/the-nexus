@@ -52,13 +52,28 @@
       .buttons {
         button {
           padding: 20px;
-          border: 1px solid white;
+          border: none;
           border-radius: 10px;
-          background-color: transparent;
           color: white;
           margin-right: 20px;
           cursor: pointer;
           font-weight: 300;
+
+          /* Semi-transparent gradient for frosted glass */
+          background: linear-gradient(
+            180deg,
+            rgba(12, 12, 29, 0.6),
+            rgba(17, 17, 50, 0.8)
+          );
+
+          /* Frosted glass effect */
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+
+          /* Optional: subtle border for definition */
+          border: 1px solid rgba(255, 255, 255, 0.1);
+
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
       }
 
